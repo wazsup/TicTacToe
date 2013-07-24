@@ -25,7 +25,7 @@ public class TicTacToe {
             case 1: System.out.println("Как зовут друга? ");
                     player2 = new Player(input.readLine(),'O',newGame);
                     break;
-            default: player2= new IIplayer(newGame);
+            default: player2= new BotPlayer(newGame);
         }
 
         int step = 0;

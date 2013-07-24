@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class IIplayer extends Player {
+public class BotPlayer extends Player {
 
     private Board board;
 
 
-    public IIplayer(Board board){
+    public BotPlayer(Board board){
         this.name = "bot#1337";
         this.label = 'O';
         this.board = board;
@@ -37,40 +37,39 @@ public class IIplayer extends Player {
     }
 
     private boolean succesfullAttack(ArrayList<Position> freeChecks, int target){
-        for (int a = 0; a<freeChecks.size(); a++){
-            int x = freeChecks.get(a).x;
-            int y = freeChecks.get(a).y;
+        for (Position freeCheck : freeChecks) {
+            int x = freeCheck.x;
+            int y = freeCheck.y;
             int enemyChecks = 0;
-            Position dangerCheck = new Position(x,y);
-            for (int i = 0; i<board.getSize(); i++){
-                if ((board.getBoardField()[x][i] == this.label)){
+            for (int i = 0; i < board.getSize(); i++) {
+                if ((board.getBoardField()[x][i] == this.label)) {
                     enemyChecks++;
                 }
             }
             checkAndSet(x, y, enemyChecks, target, true);
             enemyChecks = 0;
-            for (int i = 0; i<board.getSize(); i++){
-                if ((board.getBoardField()[i][y] == this.label)){
+            for (int i = 0; i < board.getSize(); i++) {
+                if ((board.getBoardField()[i][y] == this.label)) {
                     enemyChecks++;
                 }
             }
             checkAndSet(x, y, enemyChecks, target, true);
             enemyChecks = 0;
-            if ((board.getSize() - x - 1) == (y)){
+            if ((board.getSize() - x - 1) == (y)) {
                 int j = board.getSize();
-                for (int i = 0; i < board.getSize(); i++){
+                for (int i = 0; i < board.getSize(); i++) {
                     j--;
-                    if ((board.getBoardField()[i][j] == this.label)){
+                    if ((board.getBoardField()[i][j] == this.label)) {
                         enemyChecks++;
-                        x = freeChecks.get(a).x;
-                        y = freeChecks.get(a).y;
+                        x = freeCheck.x;
+                        y = freeCheck.y;
                     }
                 }
-            } else if((x == y)) {
+            } else if ((x == y)) {
                 int j = -1;
-                for (int i = 0; i < board.getSize(); i++){
+                for (int i = 0; i < board.getSize(); i++) {
                     j++;
-                    if ((board.getBoardField()[i][j] == this.label)){
+                    if ((board.getBoardField()[i][j] == this.label)) {
                         enemyChecks++;
                     }
                 }
@@ -82,31 +81,31 @@ public class IIplayer extends Player {
     }
 
     private void defend(ArrayList<Position> freeChecks, int target){
-        for (int a = 0; a<freeChecks.size(); a++){
-            int x = freeChecks.get(a).x;
-            int y = freeChecks.get(a).y;
+        for (Position freeCheck : freeChecks) {
+            int x = freeCheck.x;
+            int y = freeCheck.y;
             int enemyChecks = 0;
-            for (int i = 0; i<board.getSize(); i++){
-                if ((board.getBoardField()[x][i] != this.label)&&(board.getBoardField()[x][i] != board.getDefaultSymbol())){
+            for (int i = 0; i < board.getSize(); i++) {
+                if ((board.getBoardField()[x][i] != this.label) && (board.getBoardField()[x][i] != board.getDefaultSymbol())) {
                     enemyChecks++;
 //                    System.out.println("VRAGOV po verticali - "+enemyChecks);
                 }
             }
             checkAndSet(x, y, enemyChecks, target);
             enemyChecks = 0;
-            for (int i = 0; i<board.getSize(); i++){
-                if ((board.getBoardField()[i][y] != this.label)&&(board.getBoardField()[i][y] != board.getDefaultSymbol())){
+            for (int i = 0; i < board.getSize(); i++) {
+                if ((board.getBoardField()[i][y] != this.label) && (board.getBoardField()[i][y] != board.getDefaultSymbol())) {
                     enemyChecks++;
 //                    System.out.println("VRAGOV po gorizontali - "+enemyChecks);
                 }
             }
             checkAndSet(x, y, enemyChecks, target);
             enemyChecks = 0;
-            if ((board.getSize() - x - 1) == (y)){
+            if ((board.getSize() - x - 1) == (y)) {
                 int j = board.getSize();
-                for (int i = 0; i < board.getSize(); i++){
+                for (int i = 0; i < board.getSize(); i++) {
                     j--;
-                    if ((board.getBoardField()[i][j] != this.label)&&(board.getBoardField()[i][j] != board.getDefaultSymbol())){
+                    if ((board.getBoardField()[i][j] != this.label) && (board.getBoardField()[i][j] != board.getDefaultSymbol())) {
                         enemyChecks++;
                     }
                 }
@@ -114,11 +113,11 @@ public class IIplayer extends Player {
             }
             checkAndSet(x, y, enemyChecks, target);
             enemyChecks = 0;
-            if((x == y)) {
+            if ((x == y)) {
                 int j = -1;
-                for (int i = 0; i < board.getSize(); i++){
+                for (int i = 0; i < board.getSize(); i++) {
                     j++;
-                    if ((board.getBoardField()[i][j] != this.label)&&(board.getBoardField()[i][j] != board.getDefaultSymbol())){
+                    if ((board.getBoardField()[i][j] != this.label) && (board.getBoardField()[i][j] != board.getDefaultSymbol())) {
                         enemyChecks++;
                     }
                 }
