@@ -15,7 +15,7 @@
     <file path="/Player.java" changelist="49741c5c-f6ec-499b-bbfa-eab3af70fe97" time="1374691237224" ignored="false" />
     <file path="/Computer.java" changelist="49741c5c-f6ec-499b-bbfa-eab3af70fe97" time="1374553385226" ignored="false" />
     <file path="/IIplayer.java" changelist="49741c5c-f6ec-499b-bbfa-eab3af70fe97" time="1374691530363" ignored="false" />
-    <file path="/Dummy.txt" changelist="49741c5c-f6ec-499b-bbfa-eab3af70fe97" time="1374695385866" ignored="false" />
+    <file path="/Dummy.txt" changelist="49741c5c-f6ec-499b-bbfa-eab3af70fe97" time="1374695435007" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,20 +196,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="TicTacToe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTacToe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTacToe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -440,7 +426,11 @@
       <created>1374695387626</created>
       <updated>1374695387626</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="UPD">
+      <created>1374695436473</created>
+      <updated>1374695436473</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
