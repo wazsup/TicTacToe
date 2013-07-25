@@ -36,7 +36,7 @@ public class BotPlayer extends Player {
         }
     }
 
-    private boolean succesfullAttack(ArrayList<Position> freeChecks, int target){
+    private boolean successfulAttack(ArrayList<Position> freeChecks, int target){
         for (Position freeCheck : freeChecks) {
             int x = freeCheck.x;
             int y = freeCheck.y;
@@ -144,7 +144,7 @@ public class BotPlayer extends Player {
 
         /* Check dangerous */
         for (int i = board.getSize(); i > 0 ; i--) {
-            if (!succesfullAttack(freeChecks, i)){
+            if (!successfulAttack(freeChecks, i)){
                 defend(freeChecks, i);
             }
         }
