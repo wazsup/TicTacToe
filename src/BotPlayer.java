@@ -2,12 +2,15 @@ import java.util.ArrayList;
 
 public class BotPlayer extends Player {
 
-    private Board board;
-
-
     public BotPlayer(Board board){
         this.name = "bot#1337";
         this.label = 'O';
+        this.board = board;
+    }
+
+    public BotPlayer(String name, char label, Board board){
+        this.name = name;
+        this.label = label;
         this.board = board;
     }
 
@@ -21,9 +24,10 @@ public class BotPlayer extends Player {
     }
 
     private boolean checkAndSet(int x, int y, int enemyChecks, int target, boolean a){
-        if (board.getSize()-enemyChecks == target){
+        if (this.board.getSize()-enemyChecks == target){
             mark.setX(x);
             mark.setY(y);
+            board.stamp(this);
             return true;
         }
         return false;
@@ -33,6 +37,7 @@ public class BotPlayer extends Player {
         if (board.getSize()-enemyChecks == target){
             mark.setX(x);
             mark.setY(y);
+            board.stamp(this);
         }
     }
 
@@ -42,92 +47,110 @@ public class BotPlayer extends Player {
             int y = freeCheck.y;
             int enemyChecks = 0;
             for (int i = 0; i < board.getSize(); i++) {
-                if ((board.getBoardField()[x][i] == this.label)) {
+                if ((board.getBoardField()[x][i] == label)) {
                     enemyChecks++;
                 }
             }
-            checkAndSet(x, y, enemyChecks, target, true);
+            if (checkAndSet(x, y, enemyChecks, target, true)){
+                return true;
+            }
             enemyChecks = 0;
             for (int i = 0; i < board.getSize(); i++) {
-                if ((board.getBoardField()[i][y] == this.label)) {
+                if ((board.getBoardField()[i][y] == label)) {
                     enemyChecks++;
                 }
             }
-            checkAndSet(x, y, enemyChecks, target, true);
+            if (checkAndSet(x, y, enemyChecks, target, true)){
+                return true;
+            }
             enemyChecks = 0;
             if ((board.getSize() - x - 1) == (y)) {
                 int j = board.getSize();
                 for (int i = 0; i < board.getSize(); i++) {
                     j--;
-                    if ((board.getBoardField()[i][j] == this.label)) {
+                    if ((board.getBoardField()[i][j] == label)) {
                         enemyChecks++;
                         x = freeCheck.x;
                         y = freeCheck.y;
                     }
                 }
-            } else if ((x == y)) {
-                int j = -1;
-                for (int i = 0; i < board.getSize(); i++) {
-                    j++;
-                    if ((board.getBoardField()[i][j] == this.label)) {
-                        enemyChecks++;
-                    }
-                }
             }
-
-            checkAndSet(x, y, enemyChecks, target, true);
-        }
-        return false;
-    }
-
-    private void defend(ArrayList<Position> freeChecks, int target){
-        for (Position freeCheck : freeChecks) {
-            int x = freeCheck.x;
-            int y = freeCheck.y;
-            int enemyChecks = 0;
-            for (int i = 0; i < board.getSize(); i++) {
-                if ((board.getBoardField()[x][i] != this.label) && (board.getBoardField()[x][i] != board.getDefaultSymbol())) {
-                    enemyChecks++;
-//                    System.out.println("VRAGOV po verticali - "+enemyChecks);
-                }
+            if (checkAndSet(x, y, enemyChecks, target, true)){
+                return true;
             }
-            checkAndSet(x, y, enemyChecks, target);
-            enemyChecks = 0;
-            for (int i = 0; i < board.getSize(); i++) {
-                if ((board.getBoardField()[i][y] != this.label) && (board.getBoardField()[i][y] != board.getDefaultSymbol())) {
-                    enemyChecks++;
-//                    System.out.println("VRAGOV po gorizontali - "+enemyChecks);
-                }
-            }
-            checkAndSet(x, y, enemyChecks, target);
-            enemyChecks = 0;
-            if ((board.getSize() - x - 1) == (y)) {
-                int j = board.getSize();
-                for (int i = 0; i < board.getSize(); i++) {
-                    j--;
-                    if ((board.getBoardField()[i][j] != this.label) && (board.getBoardField()[i][j] != board.getDefaultSymbol())) {
-                        enemyChecks++;
-                    }
-                }
-                // System.out.println("VRAGOV po asd - "+enemyChecks);
-            }
-            checkAndSet(x, y, enemyChecks, target);
             enemyChecks = 0;
             if ((x == y)) {
                 int j = -1;
                 for (int i = 0; i < board.getSize(); i++) {
                     j++;
-                    if ((board.getBoardField()[i][j] != this.label) && (board.getBoardField()[i][j] != board.getDefaultSymbol())) {
+                    if ((board.getBoardField()[i][j] == label)) {
+                        enemyChecks++;
+                    }
+                }
+            }
+            if (checkAndSet(x, y, enemyChecks, target, true)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean successfulDefend(ArrayList<Position> freeChecks, int target){
+        for (Position freeCheck : freeChecks) {
+            int x = freeCheck.x;
+            int y = freeCheck.y;
+            int enemyChecks = 0;
+            for (int i = 0; i < board.getSize(); i++) {
+                if ((board.getBoardField()[x][i] != label) && (board.getBoardField()[x][i] != board.getDefaultSymbol())) {
+                    enemyChecks++;
+//                    System.out.println("VRAGOV po verticali - "+enemyChecks);
+                }
+            }
+            if (checkAndSet(x, y, enemyChecks, target, true)){
+                return true;
+            }
+            enemyChecks = 0;
+            for (int i = 0; i < board.getSize(); i++) {
+                if ((board.getBoardField()[i][y] != label) && (board.getBoardField()[i][y] != board.getDefaultSymbol())) {
+                    enemyChecks++;
+//                    System.out.println("VRAGOV po gorizontali - "+enemyChecks);
+                }
+            }
+            if (checkAndSet(x, y, enemyChecks, target, true)){
+                return true;
+            }
+            enemyChecks = 0;
+            if ((board.getSize() - x - 1) == (y)) {
+                int j = board.getSize();
+                for (int i = 0; i < board.getSize(); i++) {
+                    j--;
+                    if ((board.getBoardField()[i][j] != label) && (board.getBoardField()[i][j] != board.getDefaultSymbol())) {
+                        enemyChecks++;
+                    }
+                }
+                // System.out.println("VRAGOV po asd - "+enemyChecks);
+            }
+            if (checkAndSet(x, y, enemyChecks, target, true)){
+                return true;
+            }
+            enemyChecks = 0;
+            if ((x == y)) {
+                int j = -1;
+                for (int i = 0; i < board.getSize(); i++) {
+                    j++;
+                    if ((board.getBoardField()[i][j] != label) && (board.getBoardField()[i][j] != board.getDefaultSymbol())) {
                         enemyChecks++;
                     }
                 }
                 // System.out.println("VRAGOV po dsa - "+enemyChecks);
             }
 
-            checkAndSet(x, y, enemyChecks, target);
+            if (checkAndSet(x, y, enemyChecks, target, true)){
+                return true;
+            }
         }
+        return false;
     }
-
 
     public void makeMove(){
 
@@ -142,11 +165,10 @@ public class BotPlayer extends Player {
             }
         }
 
-        /* Check dangerous */
-        for (int i = board.getSize(); i > 0 ; i--) {
-            if (!successfulAttack(freeChecks, i)){
-                defend(freeChecks, i);
-            }
+        /* Attack or Defend*/
+        int i = 1;
+        while (!successfulAttack(freeChecks, i) && !successfulDefend(freeChecks, i)) {
+            i++;
         }
 
     }

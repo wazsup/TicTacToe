@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class Player {
+
     protected String name;
     protected char label;
     protected Mark mark = new Mark();
@@ -36,6 +37,7 @@ public class Player {
             System.out.print("  Y = ");
             mark.setY(Integer.parseInt(input.readLine())-1);
         }
+        board.stamp(this);
     }
 
     public void sayWin(){
