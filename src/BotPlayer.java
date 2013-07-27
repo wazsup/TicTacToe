@@ -33,14 +33,6 @@ public class BotPlayer extends Player {
         return false;
     }
 
-    private void checkAndSet(int x, int y, int enemyChecks, int target){
-        if (board.getSize()-enemyChecks == target){
-            mark.setX(x);
-            mark.setY(y);
-            board.stamp(this);
-        }
-    }
-
     private boolean successfulAttack(ArrayList<Position> freeChecks, int target){
         for (Position freeCheck : freeChecks) {
             int x = freeCheck.x;
@@ -64,7 +56,7 @@ public class BotPlayer extends Player {
                 return true;
             }
             enemyChecks = 0;
-            if ((board.getSize() - x - 1) == (y)) {
+            if ((board.getSize() - x - 1) == y) {
                 int j = board.getSize();
                 for (int i = 0; i < board.getSize(); i++) {
                     j--;
@@ -120,7 +112,7 @@ public class BotPlayer extends Player {
                 return true;
             }
             enemyChecks = 0;
-            if ((board.getSize() - x - 1) == (y)) {
+            if ((board.getSize() - x - 1) == y) {
                 int j = board.getSize();
                 for (int i = 0; i < board.getSize(); i++) {
                     j--;
@@ -157,10 +149,10 @@ public class BotPlayer extends Player {
         ArrayList<Position> freeChecks = new ArrayList<Position>();
 
         /* get Free Checks */
-        for (int i = 0; i<board.getSize(); i++){
-            for (int j = 0; j<board.getSize(); j++){
-                if (board.getBoardField()[i][j] == board.getDefaultSymbol()){
-                    freeChecks.add(new Position(i,j));
+        for (int i = 0; i < board.getSize(); i++) {
+            for (int j = 0; j < board.getSize(); j++) {
+                if (board.getBoardField()[i][j] == board.getDefaultSymbol()) {
+                    freeChecks.add(new Position(i, j));
                 }
             }
         }

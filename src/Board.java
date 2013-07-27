@@ -1,7 +1,6 @@
 public class Board {
     private int size;
     private char[][] boardField;
-    private int win = 0;
     private char defaultSymbol = '□';
 
     public Board(int size){
@@ -29,62 +28,62 @@ public class Board {
 
 
     public boolean checkWin(Player player){
+
         Mark mark = player.getMark();
 
-        boolean win1 = false;
-        boolean win2 = false;
-        boolean win3 = false;
-        boolean win4 = false;
+        boolean win = false;
+
 
         // Horizontal check
-        for (int i = 0; i<size; i++){
-            win1 = true;
+        for (int i = 0; i < size; i++){
+            win = true;
             if (boardField[mark.getX()][i] != mark.getValue()){
-                win1 = false;
+                win = false;
                 break;
             }
         }
+        if (win) return true;
+
 
         // Vertical check
-        for (int i = 0; i<size; i++){
-            win2 = true;
+        for (int i = 0; i < size; i++){
+            win = true;
             if (boardField[i][mark.getY()] != mark.getValue()){
-                win2 = false;
+                win = false;
                 break;
             }
         }
+        if (win) return true;
 
-        // Diagonal check
+        // Diagonal check #1
         if ((size - mark.getX() - 1) == (mark.getY())){
             int j = size;
-            win3 = true;
+            win = true;
             for (int i = 0; i < size; i++){
                 j--;
                 if (boardField[i][j] != mark.getValue()){
-                    win3 = false;
+                    win = false;
                     break;
                 }
             }
         }
+        if (win) return true;
 
+        // Diagonal check #2
         if((mark.getX() == mark.getY())) {
             int j = -1;
-            win4 = true;
+            win = true;
             for (int i = 0; i < size; i++){
                 j++;
                 if (boardField[i][j] != mark.getValue()){
-                    win4 = false;
+                    win = false;
                     break;
                 }
             }
         }
+        if (win) return true;
 
-        if (win1 || win2 || win3 || win4) {
-            player.sayWin();
-            return true;
-        } else {
-            return false;
-        }
+        return false;
 
     }
 
@@ -98,11 +97,7 @@ public class Board {
     }
 
     public boolean isFree(Mark mark){
-        if (boardField[mark.getX()][mark.getY()] == defaultSymbol){
-            return true;
-        } else{
-            return false;
-        }
+        return boardField[mark.getX()][mark.getY()] == defaultSymbol;
     }
 
     public char getDefaultSymbol(){
