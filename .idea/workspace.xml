@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49741c5c-f6ec-499b-bbfa-eab3af70fe97" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BotPlayer.java" afterPath="$PROJECT_DIR$/src/BotPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Player.java" afterPath="$PROJECT_DIR$/src/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TicTacToe.java" afterPath="$PROJECT_DIR$/src/TicTacToe.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TicTacToe.iws" />
@@ -18,7 +15,7 @@
     <file path="/Player.java" changelist="49741c5c-f6ec-499b-bbfa-eab3af70fe97" time="1374943403530" ignored="false" />
     <file path="/Computer.java" changelist="49741c5c-f6ec-499b-bbfa-eab3af70fe97" time="1374553385226" ignored="false" />
     <file path="/IIplayer.java" changelist="49741c5c-f6ec-499b-bbfa-eab3af70fe97" time="1374691530363" ignored="false" />
-    <file path="/Dummy.txt" changelist="49741c5c-f6ec-499b-bbfa-eab3af70fe97" time="1374944550937" ignored="false" />
+    <file path="/Dummy.txt" changelist="49741c5c-f6ec-499b-bbfa-eab3af70fe97" time="1374944589829" ignored="false" />
     <file path="/BotPlayer.java" changelist="49741c5c-f6ec-499b-bbfa-eab3af70fe97" time="1374943432635" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -119,7 +116,7 @@
       <file leaf-file-name="TicTacToe.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/TicTacToe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="29" selection-start="785" selection-end="785" vertical-scroll-proportion="-0.28426397">
+            <state line="20" column="29" selection-start="785" selection-end="785" vertical-scroll-proportion="-0.18666667">
               <folding />
             </state>
           </provider>
@@ -516,7 +513,11 @@
       <created>1374938127544</created>
       <updated>1374938127544</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="PC vs PC &#10;some fixes">
+      <created>1374944594951</created>
+      <updated>1374944594951</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -541,9 +542,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -742,7 +743,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TicTacToe.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="29" selection-start="785" selection-end="785" vertical-scroll-proportion="-0.28426397">
+        <state line="20" column="29" selection-start="785" selection-end="785" vertical-scroll-proportion="-0.18666667">
           <folding />
         </state>
       </provider>
