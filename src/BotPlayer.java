@@ -4,13 +4,13 @@ public class BotPlayer extends Player {
 
     public BotPlayer(Board board){
         this.name = "bot#1337";
-        this.label = 'O';
+        mark.setValue('O');
         this.board = board;
     }
 
     public BotPlayer(String name, char label, Board board){
         this.name = name;
-        this.label = label;
+        this.mark.setValue(label);
         this.board = board;
     }
 
@@ -39,7 +39,7 @@ public class BotPlayer extends Player {
             int y = freeCheck.y;
             int enemyChecks = 0;
             for (int i = 0; i < board.getSize(); i++) {
-                if ((board.getBoardField()[x][i] == label)) {
+                if ((board.getBoardField()[x][i] == mark.getValue())) {
                     enemyChecks++;
                 }
             }
@@ -48,7 +48,7 @@ public class BotPlayer extends Player {
             }
             enemyChecks = 0;
             for (int i = 0; i < board.getSize(); i++) {
-                if ((board.getBoardField()[i][y] == label)) {
+                if ((board.getBoardField()[i][y] == mark.getValue())) {
                     enemyChecks++;
                 }
             }
@@ -60,7 +60,7 @@ public class BotPlayer extends Player {
                 int j = board.getSize();
                 for (int i = 0; i < board.getSize(); i++) {
                     j--;
-                    if ((board.getBoardField()[i][j] == label)) {
+                    if ((board.getBoardField()[i][j] == mark.getValue())) {
                         enemyChecks++;
                         x = freeCheck.x;
                         y = freeCheck.y;
@@ -75,7 +75,7 @@ public class BotPlayer extends Player {
                 int j = -1;
                 for (int i = 0; i < board.getSize(); i++) {
                     j++;
-                    if ((board.getBoardField()[i][j] == label)) {
+                    if ((board.getBoardField()[i][j] == mark.getValue())) {
                         enemyChecks++;
                     }
                 }
@@ -93,9 +93,8 @@ public class BotPlayer extends Player {
             int y = freeCheck.y;
             int enemyChecks = 0;
             for (int i = 0; i < board.getSize(); i++) {
-                if ((board.getBoardField()[x][i] != label) && (board.getBoardField()[x][i] != board.getDefaultSymbol())) {
+                if ((board.getBoardField()[x][i] != mark.getValue()) && (board.getBoardField()[x][i] != board.getDefaultSymbol())) {
                     enemyChecks++;
-//                    System.out.println("VRAGOV po verticali - "+enemyChecks);
                 }
             }
             if (checkAndSet(x, y, enemyChecks, target, true)){
@@ -103,9 +102,8 @@ public class BotPlayer extends Player {
             }
             enemyChecks = 0;
             for (int i = 0; i < board.getSize(); i++) {
-                if ((board.getBoardField()[i][y] != label) && (board.getBoardField()[i][y] != board.getDefaultSymbol())) {
+                if ((board.getBoardField()[i][y] != mark.getValue()) && (board.getBoardField()[i][y] != board.getDefaultSymbol())) {
                     enemyChecks++;
-//                    System.out.println("VRAGOV po gorizontali - "+enemyChecks);
                 }
             }
             if (checkAndSet(x, y, enemyChecks, target, true)){
@@ -116,11 +114,10 @@ public class BotPlayer extends Player {
                 int j = board.getSize();
                 for (int i = 0; i < board.getSize(); i++) {
                     j--;
-                    if ((board.getBoardField()[i][j] != label) && (board.getBoardField()[i][j] != board.getDefaultSymbol())) {
+                    if ((board.getBoardField()[i][j] != mark.getValue()) && (board.getBoardField()[i][j] != board.getDefaultSymbol())) {
                         enemyChecks++;
                     }
                 }
-                // System.out.println("VRAGOV po asd - "+enemyChecks);
             }
             if (checkAndSet(x, y, enemyChecks, target, true)){
                 return true;
@@ -130,13 +127,11 @@ public class BotPlayer extends Player {
                 int j = -1;
                 for (int i = 0; i < board.getSize(); i++) {
                     j++;
-                    if ((board.getBoardField()[i][j] != label) && (board.getBoardField()[i][j] != board.getDefaultSymbol())) {
+                    if ((board.getBoardField()[i][j] != mark.getValue()) && (board.getBoardField()[i][j] != board.getDefaultSymbol())) {
                         enemyChecks++;
                     }
                 }
-                // System.out.println("VRAGOV po dsa - "+enemyChecks);
             }
-
             if (checkAndSet(x, y, enemyChecks, target, true)){
                 return true;
             }
@@ -158,7 +153,7 @@ public class BotPlayer extends Player {
         }
 
         /* Attack or Defend*/
-        int i = 1;
+        int i = 0;
         while (!successfulAttack(freeChecks, i) && !successfulDefend(freeChecks, i)) {
             i++;
         }

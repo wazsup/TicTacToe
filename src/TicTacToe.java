@@ -15,6 +15,7 @@ public class TicTacToe {
         System.out.println("C кем будем играть?");
         System.out.println("    1. С другом");
         System.out.println("    2. C компьютером");
+        System.out.println("    3. Будем наблюдать за игрой");
         System.out.print("         Ожидаю ввод... ");
 
         Player player1;
@@ -26,8 +27,12 @@ public class TicTacToe {
                     player1 = new Player(name,'X',newGame);
                     player2 = new Player(input.readLine(),'O',newGame);
                     break;
-            default: player1 = new Player(name,'X',newGame);
+            case 2: player1 = new Player(name,'X',newGame);
                     player2 = new BotPlayer(newGame);
+                    break;
+            default: player1 = new BotPlayer("Bot#1",'X',newGame);
+                     player2 = new BotPlayer("Bot#2",'O',newGame);
+                     break;
         }
 
         newGame.drawBoard();
@@ -39,11 +44,7 @@ public class TicTacToe {
         while (!draw) {
             step++;
 
-            if (step % 2 != 0) {
-                tempPlayer = player1;
-            } else {
-                tempPlayer = player2;
-            }
+            tempPlayer = step % 2 != 0 ? player1 : player2;
 
             tempPlayer.makeMove();
 
